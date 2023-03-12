@@ -5,6 +5,10 @@ body {
   overflow: hidden;
 }
 
+.text-audiowide {
+  font-family: "Audiowide", sans-serif;
+}
+
 /* .display {
   width: 300px;
   height: 200px;
@@ -90,14 +94,15 @@ ul {
 }
 
 .border-purple {
-  border-color: #4c12a4;
+  border-color: rgb(76, 18, 164);
 }
 .background-controller {
   height: 90%;
   width: 90%;
   background-image: linear-gradient(
-      rgba(140, 83, 255, 0.9),
-      rgba(140, 83, 255, 0.9)
+      rgba(130, 86, 176, 0.9),
+      rgba(197, 162, 215, 0.9),
+      rgba(79, 37, 100, 0.9)
     ),
     url(../images/prosoul-games_large.jpg);
   background-size: cover;

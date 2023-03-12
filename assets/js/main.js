@@ -355,7 +355,7 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         prizeboxtextspan6.className =
           "fs-7 bg-transparent text-black text-center";
         currentracecodespan.className =
-          "bg-transparent text-black text-center font-monospace";
+          "text-black bg-secondary text-center border px-3 text-audiowide border-dark";
         prizeboxspan1.textContent =
           race["prize_level_unlock"] >= 1 ? "lock_open" : "lock";
         prizeboxspan2.textContent =
