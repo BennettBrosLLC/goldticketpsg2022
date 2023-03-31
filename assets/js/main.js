@@ -163,6 +163,12 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         } else if (race["type_of_race"] === "pathfinder") {
           topper.src = "assets/images/pathfinder.webp";
           descriptorgametype = "Pathfinder";
+        } else if (race["type_of_race"] === "pkmn") {
+          topper.src = "assets/images/pathfinder.webp";
+          descriptorgametype = "Pokémon";
+        } else if (race["type_of_race"] === "fandb") {
+          topper.src = "assets/images/pathfinder.webp";
+          descriptorgametype = "Flesh and Blood";
         }
         topofracediv.appendChild(topofraceimgdiv);
         topofracediv.appendChild(topofracetitlediv);
@@ -291,7 +297,7 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         const prizeboxtextspan5 = document.createElement("span");
         const prizeboxtextspan6 = document.createElement("span");
         bottomdiv.className =
-          "fixed-bottom justify-content-between row row-cols-2 pt-xl-5 row-cols-lg-auto g-2 g-lg-3 text-center";
+          "fixed-bottom mb-3 me-3 justify-content-between row row-cols-2 pt-xl-5 row-cols-lg-auto g-2 g-lg-3 text-wrap text-center";
         prizebox1col.className = "col-1";
         prizebox2col.className = "col-1";
         prizebox3col.className = "col-1";
@@ -314,28 +320,28 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         currentracecodespan.style = "display: block; font-size: 6rem;";
         prizebox1.className =
           race["prize_level_unlock"] >= 1
-            ? "p-3  bg-warning text-center rounded border-bottom border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom border-end border-3 border-dark";
+            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
         prizebox2.className =
           race["prize_level_unlock"] >= 2
-            ? "p-3  bg-warning text-center rounded border-bottom border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom border-end border-3 border-dark";
+            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
         prizebox3.className =
           race["prize_level_unlock"] >= 3
-            ? "p-3  bg-warning text-center rounded border-bottom border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom border-end border-3 border-dark";
+            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
         prizebox4.className =
           race["prize_level_unlock"] >= 4
-            ? "p-3  bg-warning text-center rounded border-bottom border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom border-end border-3 border-dark";
+            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
         prizebox5.className =
           race["prize_level_unlock"] >= 5
-            ? "p-3  bg-warning text-center rounded border-bottom border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom border-end border-3 border-dark";
+            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
         prizebox6.className =
           race["prize_level_unlock"] >= 6
-            ? "p-3  bg-warning text-center rounded border-bottom border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom border-end border-3 border-dark";
+            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
         prizeboxspan1.className = "material-icons md-120";
         prizeboxspan2.className = "material-icons md-120";
         prizeboxspan3.className = "material-icons md-120";
@@ -440,8 +446,6 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
                 arr2.push(a);
               } else {
                 k["occurrence"]++;
-                k["racecode"] = x["racecode"];
-                k["system"] = x["system"];
               }
             }
           });
@@ -461,7 +465,6 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
       });
       return arr2;
     }
-
     let arr = memberResults.data;
     let key = "name";
     findOcc(arr, key);

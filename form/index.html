@@ -11,14 +11,17 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="py-lg-5 py-md-5 py-sm-5 m-0 border-0 bg-dark bd-example">
-  <div class="col-md-7 col-lg-8">
+<body class="py-lg-10 py-md-10 py-sm-10 m-5 border-0 bg-dark bd-example">
+  <div class="col-md-7 col-lg-8 border border-secondary p-5 rounded">
     <form>
       <div class="row g-3 mb-3">
         <div class="input-group">
           <div class="col-sm-6">
             <label for="Name" class="form-label text-white">What's Your Name?</label>
             <input type="text" class="form-control" id="name" placeholder="John Doe" value="" required />
+            <div id="namehelp" class="form-text text-danger">
+              Please write your name formally. Example: Ashton Chapman. Capitalization and accuracy matters. Without these, advancements may not be tracked properly.
+            </div>
           </div>
         </div>
       </div>
@@ -52,6 +55,14 @@
           <div class="form-check">
             <input id="PATHFNDR" name="system" type="radio" class="form-check-input" value="pathfinder" required />
             <label class="form-check-label text-white">Pathfinder</label>
+          </div>
+          <div class="form-check">
+            <input id="PKMN" name="system" type="radio" class="form-check-input" value="pkmn" required />
+            <label class="form-check-label text-white">Pokémon</label>
+          </div>
+          <div class="form-check">
+            <input id="FANDB" name="system" type="radio" class="form-check-input" value="fandb" required />
+            <label class="form-check-label text-white">Flesh and Blood</label>
           </div>
         </div>
       </div>
@@ -92,7 +103,7 @@
     $(function () {
       $("#submit").on("click", function () {
         // name
-        var name = $("#name").val() || "no set";
+        var name = $("#name").val();
 
         // gender
         var gamesystem = function () {
@@ -104,9 +115,9 @@
         };
 
         // question
-        var racecode = $("#racecode").val() || "no set";
-        var staff = $("#staff_member").val() || "no set";
-        var emailphone = $("#emailphone").val() || "no set";
+        var racecode = $("#racecode").val();
+        var staff = $("#staff_member").val();
+        var emailphone = $("#emailphone").val();
 
         var phoneoremail = "none@none.com";
 
@@ -120,7 +131,7 @@
         };
         $.ajax({
           type: "POST",
-          url: "https://docs.google.com/forms/u/0/d/19CyjMEhOzM6WLfulBw0RBWFgimBKltKFWl6wXg_lXhg/formResponse",
+          url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLScJFqn1PFHhkALtZvSIJDj6vHmm7PmKe2QkDkuyW89g-5w_ew/formResponse",
           data: data,
           contentType: "application/json",
           dataType: "jsonp",
@@ -129,7 +140,7 @@
               alert("Entry Submitted!");
             },
             201: function (response) {
-              alert('Invalid Entry');
+              alert('Entry Submitted!');
             },
             400: function (response) {
               alert('Invalid Entry');
