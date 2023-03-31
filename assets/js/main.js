@@ -164,10 +164,10 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
           topper.src = "assets/images/pathfinder.webp";
           descriptorgametype = "Pathfinder";
         } else if (race["type_of_race"] === "pkmn") {
-          topper.src = "assets/images/pathfinder.webp";
+          topper.src = "assets/images/PKMN.webp";
           descriptorgametype = "Pokémon";
         } else if (race["type_of_race"] === "fandb") {
-          topper.src = "assets/images/pathfinder.webp";
+          topper.src = "assets/images/FAB.webp";
           descriptorgametype = "Flesh and Blood";
         }
         topofracediv.appendChild(topofraceimgdiv);
