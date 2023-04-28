@@ -89,7 +89,7 @@ const getSettingJSON = async () => {
 
 // outside of any other structures you need to define this so that its available in your script
 let raceCollection = [];
-let arr2 = [];
+let outputArray = [];
 let newRaceResults = [];
 
 Promise.all([getSettingJSON(), getObjJSON()]).then(
@@ -423,52 +423,60 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         document.getElementById("raceContainer").appendChild(topdiv);
       }
     });
-
-    function findOcc(arr, key) {
-      // let arr2 = [];
-      arr.forEach((x) => {
-        // Checking if there is any object in arr2
-        // which contains the key value
-        if (
-          arr2.some((val) => {
-            return val[key] == x[key];
-          })
-        ) {
-          // If yes! then increase the occurrence by 1
-          arr2.forEach((k) => {
-            if (k[key] === x[key] && x["Approved"] === "Y") {
-              if (k["racecode"] != x["racecode"]) {
-                let a = {};
-                a[key] = x[key];
-                a["racecode"] = x["racecode"];
-                a["system"] = x["system"];
-                a["occurrence"] = 1;
-                arr2.push(a);
-              } else {
-                k["occurrence"]++;
-              }
-            }
+    
+    function findOcc(inputArray, keyArr, constValidation) {
+      let outputArray = [];
+      inputArray.forEach((input) => {
+        // Checking if there is any object in outputArray
+        // which contains ALL the key values
+        let found = false;
+        //This is something like a hybrid between an AND gate
+        //and an EQUALS gate which is really strange
+        outputArray.forEach((val) => {
+          keyArr.forEach((key) => {
+            found = val[key] === input[key];
           });
+          found ? found = val : found = false;
+        });
+
+        if (found){
+          // If yes! then increase the occurrence by 1
+          found.occurrence++;
+          //  It's really that simple!
+          //  (Assuming that you even need the racecode and approved thing here.
+          //    I would say that they belong in the checks before it even gets into the outputArray)
         } else {
           // If not! Then create a new object initialize
           // it with the present iteration key's value and
           // set the occurrence to 1
-          if (x["Approved"] === "Y") {
-            let a = {};
-            a[key] = x[key];
-            a["racecode"] = x["racecode"];
-            a["system"] = x["system"];
-            a["occurrence"] = 1;
-            arr2.push(a);
+          let valid = false;
+          Object.keys(constValidation).forEach((key) =>{
+            //This loop will only close with valid as true when all of the conditions are met
+            valid = input[key] === constValidation[key];
+          });
+          if (valid) {
+
+            let temp = {};
+            //make sure to copy over all of the keys that you care about comparing
+            keyArr.forEach((key) =>{
+              temp[key] = input[key];
+            });
+            temp["occurrence"] = 1;
+
+            outputArray.push(temp);
           }
         }
       });
-      return arr2;
+      return outputArray;
     }
     let arr = memberResults.data;
-    let key = "name";
-    findOcc(arr, key);
-
+    //if we need to add additional criteria to the new array and validate based on them they need to be added to the key
+    let key = ["name", "racecode", "system"];
+    //treat this column from the original array as the criteria required to allow an entry from the original array to pass to the new array
+    let constValidation = {
+      "Approved" : "Y"
+    };
+    let arr2 = findOcc(arr, key, constValidation);
     //check if name already added to a div
     let z = 0;
     do {
@@ -495,18 +503,10 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
       }
       if (document.getElementById(arr2[z].racecode) === null) {
       } else {
-        document
-          .getElementById(arr2[z].racecode + arr2[z].system + "box1")
-          .appendChild(div1);
-        document
-          .getElementById(arr2[z].racecode + arr2[z].system + "box2")
-          .appendChild(div2);
-        document
-          .getElementById(arr2[z].racecode + arr2[z].system + "box2")
-          .appendChild(div3);
-        document
-          .getElementById(arr2[z].racecode + arr2[z].system + "box3")
-          .appendChild(div4);
+        document.getElementById(arr2[z].racecode + arr2[z].system + "box1").appendChild(div1);
+        document.getElementById(arr2[z].racecode + arr2[z].system + "box2").appendChild(div2);
+        document.getElementById(arr2[z].racecode + arr2[z].system + "box2").appendChild(div3);
+        document.getElementById(arr2[z].racecode + arr2[z].system + "box3").appendChild(div4);
       }
       z++;
     } while (z < arr2.length);
