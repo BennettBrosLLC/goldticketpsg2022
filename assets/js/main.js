@@ -142,33 +142,49 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         topofracetitlediv.className = "col p-3 justify-content-end text-center";
         topper.className = "boardtopper";
         let descriptorgametype = "";
-        if (race["type_of_race"] === "mtg") {
-          topper.src = "assets/images/mtg.webp";
-          descriptorgametype = "Magic";
-        } else if (race["type_of_race"] === "ygoh") {
-          topper.src = "assets/images/ygoh.webp";
-          descriptorgametype = "Yu-Gi-OH!";
-        } else if (race["type_of_race"] === "boardgames") {
-          topper.src = "assets/images/boardgames.webp";
-          descriptorgametype = "BoardGames";
-        } else if (race["type_of_race"] === "warhammer") {
-          topper.src = "assets/images/warhammer.webp";
-          descriptorgametype = "WarHammer";
-        } else if (race["type_of_race"] === "dungeonsanddragons") {
-          topper.src = "assets/images/dungeonsanddragons.webp";
-          descriptorgametype = "D&D";
-        } else if (race["type_of_race"] === "vanguard") {
-          topper.src = "assets/images/vanguard.webp";
-          descriptorgametype = "Cardfight! Vanguard";
-        } else if (race["type_of_race"] === "pathfinder") {
-          topper.src = "assets/images/pathfinder.webp";
-          descriptorgametype = "Pathfinder";
-        } else if (race["type_of_race"] === "pkmn") {
-          topper.src = "assets/images/PKMN.webp";
-          descriptorgametype = "Pokémon";
-        } else if (race["type_of_race"] === "fandb") {
-          topper.src = "assets/images/FAB.webp";
-          descriptorgametype = "Flesh and Blood";
+        const raceTypeMap = {
+          "mtg": {
+            src: "assets/images/mtg.webp",
+            descriptor: "Magic"
+          },
+          "ygoh": {
+            src: "assets/images/ygoh.webp",
+            descriptor: "Yu-Gi-OH!"
+          },
+          "boardgames": {
+            src: "assets/images/boardgames.webp",
+            descriptor: "BoardGames"
+          },
+          "warhammer": {
+            src: "assets/images/warhammer.webp",
+            descriptor: "WarHammer"
+          },
+          "dungeonsanddragons": {
+            src: "assets/images/dungeonsanddragons.webp",
+            descriptor: "D&D"
+          },
+          "vanguard": {
+            src: "assets/images/vanguard.webp",
+            descriptor: "Cardfight! Vanguard"
+          },
+          "pathfinder": {
+            src: "assets/images/pathfinder.webp",
+            descriptor: "Pathfinder"
+          },
+          "pkmn": {
+            src: "assets/images/PKMN.webp",
+            descriptor: "Pokémon"
+          },
+          "fandb": {
+            src: "assets/images/FAB.webp",
+            descriptor: "Flesh and Blood"
+          }
+        };
+        
+        const raceType = race["type_of_race"];
+        if (raceType in raceTypeMap) {
+          topper.src = raceTypeMap[raceType].src;
+          descriptorgametype = raceTypeMap[raceType].descriptor;
         }
         topofracediv.appendChild(topofraceimgdiv);
         topofracediv.appendChild(topofracetitlediv);
@@ -427,82 +443,74 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
     function findOcc(inputArray, keyArr, constValidation) {
       let outputArray = [];
       inputArray.forEach((input) => {
-        // Checking if there is any object in outputArray
-        // which contains ALL the key values
-        let found = false;
-        //This is something like a hybrid between an AND gate
-        //and an EQUALS gate which is really strange
-        outputArray.forEach((val) => {
-          keyArr.forEach((key) => {
-            found = val[key] === input[key];
+        // Checking if the "Approved" value is equal to "Y"
+        if (input.Approved === "Y") {
+          // Checking if there is any object in outputArray
+          // which contains ALL the key values
+          let found = false;
+          outputArray.forEach((val) => {
+            let allKeysMatch = keyArr.every((key) => val[key] === input[key]);
+            if (allKeysMatch) {
+              found = true;
+              val.occurrence++;
+            }
           });
-          found ? found = val : found = false;
-        });
-
-        if (found){
-          // If yes! then increase the occurrence by 1
-          found.occurrence++;
-          //  It's really that simple!
-          //  (Assuming that you even need the racecode and approved thing here.
-          //    I would say that they belong in the checks before it even gets into the outputArray)
-        } else {
-          // If not! Then create a new object initialize
-          // it with the present iteration key's value and
-          // set the occurrence to 1
-          let valid = false;
-          Object.keys(constValidation).forEach((key) =>{
-            //This loop will only close with valid as true when all of the conditions are met
-            valid = input[key] === constValidation[key];
-          });
-          if (valid) {
-
+          if (!found) {
             let temp = {};
-            //make sure to copy over all of the keys that you care about comparing
-            keyArr.forEach((key) =>{
+            keyArr.forEach((key) => {
               temp[key] = input[key];
             });
             temp["occurrence"] = 1;
-
             outputArray.push(temp);
           }
         }
       });
       return outputArray;
     }
+    
     let arr = memberResults.data;
     //if we need to add additional criteria to the new array and validate based on them they need to be added to the key
     let key = ["name", "racecode", "system"];
     //treat this column from the original array as the criteria required to allow an entry from the original array to pass to the new array
     let constValidation = {
-      "Approved" : "Y"
+      "Approved": "Y"
     };
     let arr2 = findOcc(arr, key, constValidation);
+    //console.log(arr2);
     //check if name already added to a div
     let z = 0;
     do {
+      //console.log("arr2[z]:", arr2[z]);
+      //console.log("racecode + system:", arr2[z].racecode + arr2[z].system);
       const div1 = document.createElement("div");
       const div2 = document.createElement("div");
       const div3 = document.createElement("div");
       const div4 = document.createElement("div");
       if (arr2[z].occurrence === 1) {
+        //console.log("Adding to div1:", arr2[z]["name"]);
         div1.textContent += arr2[z]["name"];
         linebreak = document.createElement("br");
         div1.appendChild(linebreak);
       } else if (arr2[z].occurrence === 2) {
+        //console.log("Adding to div2:", arr2[z]["name"]);
         div2.textContent += arr2[z]["name"];
         linebreak = document.createElement("br");
         div2.appendChild(linebreak);
       } else if (arr2[z].occurrence === 3) {
+        //console.log("Adding to div3:", arr2[z]["name"]);
         div3.textContent += arr2[z]["name"];
         linebreak = document.createElement("br");
         div3.appendChild(linebreak);
       } else if (arr2[z].occurrence === 4) {
+        //console.log("Adding to div4:", arr2[z]["name"]);
         div4.textContent += arr2[z]["name"];
         linebreak = document.createElement("br");
         div4.appendChild(linebreak);
       }
-      if (document.getElementById(arr2[z].racecode) === null) {
+      if (document.getElementById(arr2[z].racecode + arr2[z].system + "box1") === null) {
+        //console.log("Could not find element with id:", arr2[z].racecode + arr2[z].system + "box1");
       } else {
+        //console.log("Found element with id:", arr2[z].racecode + arr2[z].system + "box1");
         document.getElementById(arr2[z].racecode + arr2[z].system + "box1").appendChild(div1);
         document.getElementById(arr2[z].racecode + arr2[z].system + "box2").appendChild(div2);
         document.getElementById(arr2[z].racecode + arr2[z].system + "box2").appendChild(div3);
