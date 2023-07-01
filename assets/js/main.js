@@ -240,13 +240,13 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         box3col.className = "col centralboxes text-white";
         box4col.className = "col centralboxes text-white";
         box1.className =
-          "p-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
         box2.className =
-          "p-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
         box3.className =
-          "p-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
         box4.className =
-          "p-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
 
         box1.style = "height: 25vh";
         box2.style = "height: 25vh";
