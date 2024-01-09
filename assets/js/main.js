@@ -143,44 +143,44 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         topper.className = "boardtopper";
         let descriptorgametype = "";
         const raceTypeMap = {
-          "mtg": {
+          mtg: {
             src: "assets/images/mtg.webp",
-            descriptor: "Magic"
+            descriptor: "Magic",
           },
-          "ygoh": {
+          ygoh: {
             src: "assets/images/ygoh.webp",
-            descriptor: "Yu-Gi-OH!"
+            descriptor: "Yu-Gi-OH!",
           },
-          "boardgames": {
+          boardgames: {
             src: "assets/images/boardgames.webp",
-            descriptor: "BoardGames"
+            descriptor: "BoardGames",
           },
-          "warhammer": {
+          warhammer: {
             src: "assets/images/warhammer.webp",
-            descriptor: "WarHammer"
+            descriptor: "WarHammer",
           },
-          "dungeonsanddragons": {
+          dungeonsanddragons: {
             src: "assets/images/dungeonsanddragons.webp",
-            descriptor: "D&D"
+            descriptor: "D&D",
           },
-          "vanguard": {
+          vanguard: {
             src: "assets/images/vanguard.webp",
-            descriptor: "Cardfight! Vanguard"
+            descriptor: "Cardfight! Vanguard",
           },
-          "pathfinder": {
+          pathfinder: {
             src: "assets/images/pathfinder.webp",
-            descriptor: "Pathfinder"
+            descriptor: "Pathfinder",
           },
-          "pkmn": {
+          pkmn: {
             src: "assets/images/PKMN.webp",
-            descriptor: "Pokémon"
+            descriptor: "Pokémon",
           },
-          "fandb": {
+          fandb: {
             src: "assets/images/FAB.webp",
-            descriptor: "Flesh and Blood"
-          }
+            descriptor: "Flesh and Blood",
+          },
         };
-        
+
         const raceType = race["type_of_race"];
         if (raceType in raceTypeMap) {
           topper.src = raceTypeMap[raceType].src;
@@ -223,8 +223,9 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         //central divs--------------------------------------------------------------------------------------------------|
 
         //define all classes for central divs
+        //changed from row-cols-lg-4 to row-cols-lg-3 because we are no longer displaying 4 challenges
         centraldiv.className =
-          "row text-center row-cols-2 row-cols-lg-4 g-2 g-lg-3";
+          "row text-center row-cols-2 row-cols-lg-3 g-2 g-lg-3";
         //achievements---------------------------------------------------------------------------------------|
         achievementbox1col.className = "col";
         achievementbox2col.className = "col";
@@ -240,13 +241,13 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         box3col.className = "col centralboxes text-white";
         box4col.className = "col centralboxes text-white";
         box1.className =
-          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 centralbox bg-secondary rounded border border-dark border-1";
         box2.className =
-          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 centralbox bg-secondary rounded border border-dark border-1";
         box3.className =
-          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 centralbox bg-secondary rounded border border-dark border-1";
         box4.className =
-          "p-3 fs-3 centralbox bg-secondary rounded border border-dark border-1";
+          "p-3 centralbox bg-secondary rounded border border-dark border-1";
 
         box1.style = "height: 25vh";
         box2.style = "height: 25vh";
@@ -273,7 +274,7 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         centraldiv.appendChild(achievementbox1col);
         centraldiv.appendChild(achievementbox2col);
         centraldiv.appendChild(achievementbox3col);
-        centraldiv.appendChild(achievementbox4col);
+        // centraldiv.appendChild(achievementbox4col);
         box1col.appendChild(box1);
         box2col.appendChild(box2);
         box3col.appendChild(box3);
@@ -281,7 +282,7 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         centraldiv.appendChild(box1col);
         centraldiv.appendChild(box2col);
         centraldiv.appendChild(box3col);
-        centraldiv.appendChild(box4col);
+        // centraldiv.appendChild(box4col);
 
         //bottom divs--------------------------------------------------------------------------------------------------|
         const bottomdiv = document.createElement("div");
@@ -314,116 +315,117 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         const prizeboxtextspan6 = document.createElement("span");
         bottomdiv.className =
           "fixed-bottom mb-3 me-3 justify-content-between row row-cols-2 pt-xl-5 row-cols-lg-auto g-2 g-lg-3 text-wrap text-center";
-        prizebox1col.className = "col-1";
-        prizebox2col.className = "col-1";
-        prizebox3col.className = "col-1";
-        prizebox4col.className = "col-1";
-        prizebox5col.className = "col-1";
-        prizebox6col.className = "col-1";
-        currentracecodecol.className = "col-1 justify-content-center mx-auto my-auto";
-        // prizebox1col.style = "width: 10vw;";
-        // prizebox2col.style = "width: 10vw;";
-        // prizebox3col.style = "width: 10vw;";
-        // prizebox4col.style = "width: 10vw;";
-        // prizebox5col.style = "width: 10vw;";
-        // prizebox6col.style = "width: 10vw;";
-        prizeboxtextspan1.style = "display: block";
-        prizeboxtextspan2.style = "display: block";
-        prizeboxtextspan3.style = "display: block";
-        prizeboxtextspan4.style = "display: block";
-        prizeboxtextspan5.style = "display: block";
-        prizeboxtextspan6.style = "display: block";
+        // prizebox1col.className = "col-1";
+        // prizebox2col.className = "col-1";
+        // prizebox3col.className = "col-1";
+        // prizebox4col.className = "col-1";
+        // prizebox5col.className = "col-1";
+        // prizebox6col.className = "col-1";
+        currentracecodecol.className =
+          "col-1 justify-content-center mx-auto my-auto";
+        // // prizebox1col.style = "width: 10vw;";
+        // // prizebox2col.style = "width: 10vw;";
+        // // prizebox3col.style = "width: 10vw;";
+        // // prizebox4col.style = "width: 10vw;";
+        // // prizebox5col.style = "width: 10vw;";
+        // // prizebox6col.style = "width: 10vw;";
+        // prizeboxtextspan1.style = "display: block";
+        // prizeboxtextspan2.style = "display: block";
+        // prizeboxtextspan3.style = "display: block";
+        // prizeboxtextspan4.style = "display: block";
+        // prizeboxtextspan5.style = "display: block";
+        // prizeboxtextspan6.style = "display: block";
         currentracecodespan.style = "display: block; font-size: 6rem;";
-        prizebox1.className =
-          race["prize_level_unlock"] >= 1
-            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
-        prizebox2.className =
-          race["prize_level_unlock"] >= 2
-            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
-        prizebox3.className =
-          race["prize_level_unlock"] >= 3
-            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
-        prizebox4.className =
-          race["prize_level_unlock"] >= 4
-            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
-        prizebox5.className =
-          race["prize_level_unlock"] >= 5
-            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
-        prizebox6.className =
-          race["prize_level_unlock"] >= 6
-            ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
-            : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
-        prizeboxspan1.className = "material-icons md-120";
-        prizeboxspan2.className = "material-icons md-120";
-        prizeboxspan3.className = "material-icons md-120";
-        prizeboxspan4.className = "material-icons md-120";
-        prizeboxspan5.className = "material-icons md-120";
-        prizeboxspan6.className = "material-icons md-120";
-        prizeboxtextspan1.className =
-          "fs-7 bg-transparent text-black text-center";
-        prizeboxtextspan2.className =
-          "fs-7 bg-transparent text-black text-center";
-        prizeboxtextspan3.className =
-          "fs-7 bg-transparent text-black text-center";
-        prizeboxtextspan4.className =
-          "fs-7 bg-transparent text-black text-center";
-        prizeboxtextspan5.className =
-          "fs-7 bg-transparent text-black text-center";
-        prizeboxtextspan6.className =
-          "fs-7 bg-transparent text-black text-center";
-        currentracecodespan.className =
-          "text-black bg-secondary text-center border px-3 text-audiowide border-dark";
-        prizeboxspan1.textContent =
-          race["prize_level_unlock"] >= 1 ? "lock_open" : "lock";
-        prizeboxspan2.textContent =
-          race["prize_level_unlock"] >= 2 ? "lock_open" : "lock";
-        prizeboxspan3.textContent =
-          race["prize_level_unlock"] >= 3 ? "lock_open" : "lock";
-        prizeboxspan4.textContent =
-          race["prize_level_unlock"] >= 4 ? "lock_open" : "lock";
-        prizeboxspan5.textContent =
-          race["prize_level_unlock"] >= 5 ? "lock_open" : "lock";
-        prizeboxspan6.textContent =
-          race["prize_level_unlock"] >= 6 ? "lock_open" : "lock";
-        prizeboxtextspan1.textContent = race["Prize1"];
-        prizeboxtextspan2.textContent = race["Prize2"];
-        prizeboxtextspan3.textContent = race["Prize3"];
-        prizeboxtextspan4.textContent = race["Prize4"];
-        prizeboxtextspan5.textContent = race["Prize5"];
-        prizeboxtextspan6.textContent = race["Prize6"];
+        // prizebox1.className =
+        //   race["prize_level_unlock"] >= 1
+        //     ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+        //     : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
+        // prizebox2.className =
+        //   race["prize_level_unlock"] >= 2
+        //     ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+        //     : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
+        // prizebox3.className =
+        //   race["prize_level_unlock"] >= 3
+        //     ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+        //     : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
+        // prizebox4.className =
+        //   race["prize_level_unlock"] >= 4
+        //     ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+        //     : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
+        // prizebox5.className =
+        //   race["prize_level_unlock"] >= 5
+        //     ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+        //     : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
+        // prizebox6.className =
+        //   race["prize_level_unlock"] >= 6
+        //     ? "p-3  bg-warning text-center rounded border-bottom text-wrap border-end border-3 border-dark"
+        //     : "p-3  bg-secondary text-center rounded border-bottom text-wrap border-end border-3 border-dark";
+        // prizeboxspan1.className = "material-icons md-120";
+        // prizeboxspan2.className = "material-icons md-120";
+        // prizeboxspan3.className = "material-icons md-120";
+        // prizeboxspan4.className = "material-icons md-120";
+        // prizeboxspan5.className = "material-icons md-120";
+        // prizeboxspan6.className = "material-icons md-120";
+        // prizeboxtextspan1.className =
+        //   "fs-7 bg-transparent text-black text-center";
+        // prizeboxtextspan2.className =
+        //   "fs-7 bg-transparent text-black text-center";
+        // prizeboxtextspan3.className =
+        //   "fs-7 bg-transparent text-black text-center";
+        // prizeboxtextspan4.className =
+        //   "fs-7 bg-transparent text-black text-center";
+        // prizeboxtextspan5.className =
+        //   "fs-7 bg-transparent text-black text-center";
+        // prizeboxtextspan6.className =
+        //   "fs-7 bg-transparent text-black text-center";
+        // currentracecodespan.className =
+        //   "text-black bg-secondary text-center border px-3 text-audiowide border-dark";
+        // prizeboxspan1.textContent =
+        //   race["prize_level_unlock"] >= 1 ? "lock_open" : "lock";
+        // prizeboxspan2.textContent =
+        //   race["prize_level_unlock"] >= 2 ? "lock_open" : "lock";
+        // prizeboxspan3.textContent =
+        //   race["prize_level_unlock"] >= 3 ? "lock_open" : "lock";
+        // prizeboxspan4.textContent =
+        //   race["prize_level_unlock"] >= 4 ? "lock_open" : "lock";
+        // prizeboxspan5.textContent =
+        //   race["prize_level_unlock"] >= 5 ? "lock_open" : "lock";
+        // prizeboxspan6.textContent =
+        //   race["prize_level_unlock"] >= 6 ? "lock_open" : "lock";
+        // prizeboxtextspan1.textContent = race["Prize1"];
+        // prizeboxtextspan2.textContent = race["Prize2"];
+        // prizeboxtextspan3.textContent = race["Prize3"];
+        // prizeboxtextspan4.textContent = race["Prize4"];
+        // prizeboxtextspan5.textContent = race["Prize5"];
+        // prizeboxtextspan6.textContent = race["Prize6"];
         currentracecodespan.textContent = race["race_code"];
-        prizebox1.appendChild(prizeboxspan1);
-        prizebox2.appendChild(prizeboxspan2);
-        prizebox3.appendChild(prizeboxspan3);
-        prizebox4.appendChild(prizeboxspan4);
-        prizebox5.appendChild(prizeboxspan5);
-        prizebox6.appendChild(prizeboxspan6);
+        // prizebox1.appendChild(prizeboxspan1);
+        // prizebox2.appendChild(prizeboxspan2);
+        // prizebox3.appendChild(prizeboxspan3);
+        // prizebox4.appendChild(prizeboxspan4);
+        // prizebox5.appendChild(prizeboxspan5);
+        // prizebox6.appendChild(prizeboxspan6);
         currentracecode.appendChild(currentracecodespan);
-        prizebox1.appendChild(prizeboxtextspan1);
-        prizebox2.appendChild(prizeboxtextspan2);
-        prizebox3.appendChild(prizeboxtextspan3);
-        prizebox4.appendChild(prizeboxtextspan4);
-        prizebox5.appendChild(prizeboxtextspan5);
-        prizebox6.appendChild(prizeboxtextspan6);
-        prizebox1col.appendChild(prizebox1);
-        prizebox2col.appendChild(prizebox2);
-        prizebox3col.appendChild(prizebox3);
-        prizebox4col.appendChild(prizebox4);
-        prizebox5col.appendChild(prizebox5);
-        prizebox6col.appendChild(prizebox6);
+        // prizebox1.appendChild(prizeboxtextspan1);
+        // prizebox2.appendChild(prizeboxtextspan2);
+        // prizebox3.appendChild(prizeboxtextspan3);
+        // prizebox4.appendChild(prizeboxtextspan4);
+        // prizebox5.appendChild(prizeboxtextspan5);
+        // prizebox6.appendChild(prizeboxtextspan6);
+        // prizebox1col.appendChild(prizebox1);
+        // prizebox2col.appendChild(prizebox2);
+        // prizebox3col.appendChild(prizebox3);
+        // prizebox4col.appendChild(prizebox4);
+        // prizebox5col.appendChild(prizebox5);
+        // prizebox6col.appendChild(prizebox6);
         currentracecodecol.appendChild(currentracecode);
         bottomdiv.appendChild(currentracecodecol);
-        bottomdiv.appendChild(prizebox1col);
-        bottomdiv.appendChild(prizebox2col);
-        bottomdiv.appendChild(prizebox3col);
-        bottomdiv.appendChild(prizebox4col);
-        bottomdiv.appendChild(prizebox5col);
-        bottomdiv.appendChild(prizebox6col);
+        // bottomdiv.appendChild(prizebox1col);
+        // bottomdiv.appendChild(prizebox2col);
+        // bottomdiv.appendChild(prizebox3col);
+        // bottomdiv.appendChild(prizebox4col);
+        // bottomdiv.appendChild(prizebox5col);
+        // bottomdiv.appendChild(prizebox6col);
         //final logic--------------------------------------------------------------------------------------------------|
 
         topdiv.dataset.count = race.total; // this could be useful in the future
@@ -439,7 +441,7 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         document.getElementById("raceContainer").appendChild(topdiv);
       }
     });
-    
+
     function findOcc(inputArray, keyArr, constValidation) {
       let outputArray = [];
       inputArray.forEach((input) => {
@@ -467,13 +469,13 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
       });
       return outputArray;
     }
-    
+
     let arr = memberResults.data;
     //if we need to add additional criteria to the new array and validate based on them they need to be added to the key
     let key = ["name", "racecode", "system"];
     //treat this column from the original array as the criteria required to allow an entry from the original array to pass to the new array
     let constValidation = {
-      "Approved": "Y"
+      Approved: "Y",
     };
     let arr2 = findOcc(arr, key, constValidation);
     //console.log(arr2);
@@ -507,14 +509,25 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         linebreak = document.createElement("br");
         div4.appendChild(linebreak);
       }
-      if (document.getElementById(arr2[z].racecode + arr2[z].system + "box1") === null) {
+      if (
+        document.getElementById(arr2[z].racecode + arr2[z].system + "box1") ===
+        null
+      ) {
         //console.log("Could not find element with id:", arr2[z].racecode + arr2[z].system + "box1");
       } else {
         //console.log("Found element with id:", arr2[z].racecode + arr2[z].system + "box1");
-        document.getElementById(arr2[z].racecode + arr2[z].system + "box1").appendChild(div1);
-        document.getElementById(arr2[z].racecode + arr2[z].system + "box2").appendChild(div2);
-        document.getElementById(arr2[z].racecode + arr2[z].system + "box2").appendChild(div3);
-        document.getElementById(arr2[z].racecode + arr2[z].system + "box3").appendChild(div4);
+        document
+          .getElementById(arr2[z].racecode + arr2[z].system + "box1")
+          .appendChild(div1);
+        document
+          .getElementById(arr2[z].racecode + arr2[z].system + "box2")
+          .appendChild(div2);
+        document
+          .getElementById(arr2[z].racecode + arr2[z].system + "box2")
+          .appendChild(div3);
+        document
+          .getElementById(arr2[z].racecode + arr2[z].system + "box3")
+          .appendChild(div4);
       }
       z++;
     } while (z < arr2.length);
