@@ -130,28 +130,34 @@
           "entry.1924036158": emailphone,
         };
         $.ajax({
-          type: "POST",
-          url: "https://script.google.com/macros/s/AKfycbwxr7zveZgUmaMPd1P8lipZ53xCrStxuOfZoMAZKoXix8pY_dawvu4QflSNYec9EI4BjQ/exec",
-          data: data,
-          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-          dataType: "xml",
-          statusCode: {
-            200: function (response) {
-              alert("Entry Submitted!");
-            },
-            201: function (response) {
-              alert('Entry Submitted!');
-            },
-            400: function (response) {
-              alert('Invalid Entry');
-            },
-            404: function (response) {
-              alert('Invalid Entry');
-            }
-        }, success: function () {
-            alert("Entry Submitted!");
-        },
-        });
+  type: "POST",
+  url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLScJFqn1PFHhkALtZvSIJDj6vHmm7PmKe2QkDkuyW89g-5w_ew/formResponse",
+  data: data,
+  contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+  dataType: "xml", // Change to "xml"
+  statusCode: {
+    200: function () {
+      alert("Entry Submitted!");
+    },
+    201: function () {
+      alert('Entry Submitted!');
+    },
+    400: function () {
+      alert('Invalid Entry');
+    },
+    404: function () {
+      alert('Invalid Entry');
+    },
+    // Handle CORS issue
+    0: function () {
+      alert("Entry Submitted! (CORS issue)");
+    },
+  },
+  success: function () {
+    // For cases where the request succeeds (200 OK), but CORS prevents reading the response
+    alert("Entry Submitted! (CORS issue)");
+  },
+});
       });
     });
   </script>
