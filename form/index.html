@@ -133,8 +133,8 @@
           type: "POST",
           url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLScJFqn1PFHhkALtZvSIJDj6vHmm7PmKe2QkDkuyW89g-5w_ew/formResponse",
           data: data,
-          contentType: "application/json",
-          dataType: "jsonp",
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+          dataType: "xml",
           statusCode: {
             200: function (response) {
               alert("Entry Submitted!");
