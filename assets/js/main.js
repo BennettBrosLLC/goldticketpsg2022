@@ -98,13 +98,17 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
 
     // add a "total" property to each race in the activeRaces array
     raceResults = raceResults.data.map((race) => ({ ...race, total: 0 }));
-    // console.log(raceResults);
+    console.log(raceResults);
     // console.log(memberResults);
     memberResults.data.forEach((member) => {
       const i = raceResults.findIndex(
         (race) => race["race_code"] === member.racecode
       );
-      raceResults[i].total++;
+      if (raceResults[i]) {
+        raceResults[i].total++;
+      } else {
+        console.log("Race object not found for race code:", member.racecode);
+      }
     });
 
     function findFirstIndex(race) {
@@ -262,13 +266,13 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
         achievementbox1.textContent = race["acheivement1"];
         achievementbox2.textContent = race["acheivement2"];
         achievementbox3.textContent = race["acheivement3"];
-        achievementbox4.textContent = race["acheivement4"];
+        // achievementbox4.textContent = race["acheivement4"];
 
         //properly append the achievements
         achievementbox1col.appendChild(achievementbox1);
         achievementbox2col.appendChild(achievementbox2);
         achievementbox3col.appendChild(achievementbox3);
-        achievementbox4col.appendChild(achievementbox4);
+        // achievementbox4col.appendChild(achievementbox4);
 
         //properly build name list containers
         centraldiv.appendChild(achievementbox1col);
