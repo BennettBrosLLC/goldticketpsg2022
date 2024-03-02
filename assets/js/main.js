@@ -98,7 +98,7 @@ Promise.all([getSettingJSON(), getObjJSON()]).then(
 
     // add a "total" property to each race in the activeRaces array
     raceResults = raceResults.data.map((race) => ({ ...race, total: 0 }));
-    console.log(raceResults);
+    // console.log(raceResults);
     // console.log(memberResults);
     memberResults.data.forEach((member) => {
       const i = raceResults.findIndex(
